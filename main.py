@@ -20,6 +20,8 @@ __version__ = "0.1.0"
 __license__ = "MIT"
 
 import argparse
+from proyecto2.cloud_coverage import CloudCoverage
+from proyecto2.io import IO
 
 
 def main(args):
@@ -27,8 +29,13 @@ def main(args):
     image_path = args.image_path
     export = bool(args.S)
 
-    print("File to be read: {}".format(image_path))
-    print("Save file: {}".format(export))
+    image = IO.read(image_path)
+    index, new_image = CloudCoverage.compute(image)
+
+    if export:
+        IO.write(new_image)
+
+    print("El índice de cobertura nubosa es: {}".format(index))
 
 
 if __name__ == "__main__":
