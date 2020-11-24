@@ -2,19 +2,21 @@ import cv2
 import numpy as np
 from .image import Image
 
+RADIUS = 1324
+CENTER_X = 1456
+CENTER_Y = 2184
+
 class CloudCoverage:
-    RADIUS = 1324
 
     @classmethod
     def get_mask(cls, image):
-        total_row , total_col , _ = image.shape
-        x , y = np.ogrid[:total_row , :total_col]
-        cen_x , cen_y = total_row/2 , total_col/2
+        rows, cols, _ = image.shape
+        x, y = np.ogrid[:rows, :cols]
 
-        distance_from_the_center = np.sqrt((x-cen_x)**2 + (y-cen_y)**2)
-        outer_mask = distance_from_the_center > cls.RADIUS
+        distance_from_center = np.sqrt((x - CENTER_X) ** 2 + (y - CENTER_Y) ** 2)
+        mask = distance_from_center > RADIUS
 
-        return outer_mask
+        return mask
 
 
     @classmethod

@@ -24,18 +24,25 @@ from proyecto2.cloud_coverage import CloudCoverage
 from proyecto2.io import IO
 
 
-def main(args):
+def main(image_path, export):
     """ Main entry point of the app """
-    image_path = args.image_path
-    export = bool(args.S)
+    try:
+        image = IO.read(image_path)
+        print("Se recibió la imagen {}.{}".format(image.name, image.extension))
+    except IOError:
+        print("No se pudo leer la imagen {}".format(image_path))
+        exit(1)
 
-    image = IO.read(image_path)
     index, new_image = CloudCoverage.compute(image)
 
-    if export:
-        IO.write(new_image)
-
     print("El índice de cobertura nubosa es: {}".format(index))
+
+    if export:
+        try:
+            IO.write(new_image)
+            print("Se guardó exitosamente la imagen {}.{}".format(new_image.name, new_image.extension))
+        except:
+            print("Ocurrió un error al guardar la imagen {}.{}".format(new_image.name, new_image.extension))
 
 
 if __name__ == "__main__":
@@ -50,4 +57,4 @@ if __name__ == "__main__":
                         help="Passed if the output image should be saved to <image_path>-seg.jpg")
 
     args = parser.parse_args()
-    main(args)
+    main(args.image_path, bool(args.S))
