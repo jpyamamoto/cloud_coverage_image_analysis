@@ -3,15 +3,15 @@ import numpy as np
 from .image import Image
 
 RADIUS = 1324
-CENTER_X = 1456
-CENTER_Y = 2184
+CENTER_X = 2184
+CENTER_Y = 1456
 
 class CloudCoverage:
 
     @classmethod
     def get_mask(cls, image):
         rows, cols, _ = image.shape
-        x, y = np.ogrid[:rows, :cols]
+        y, x = np.ogrid[:rows, :cols]
 
         distance_from_center = np.sqrt((x - CENTER_X) ** 2 + (y - CENTER_Y) ** 2)
         mask = distance_from_center > RADIUS
@@ -54,6 +54,6 @@ class CloudCoverage:
         modified_image = cls.classify(modified_image)
         count = cls.ratio(modified_image)
 
-        new_image = Image(image.name + "-seg.png", modified_image)
+        new_image = Image(modified_image)
         return (count, new_image)
 

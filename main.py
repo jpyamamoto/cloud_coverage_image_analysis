@@ -26,23 +26,28 @@ from proyecto2.io import IO
 
 def main(image_path, export):
     """ Main entry point of the app """
+    # Read the image located in image_path.
     try:
         image = IO.read(image_path)
-        print("Se recibió la imagen {}.{}".format(image.name, image.extension))
+        IO.write(image, "test.jpg")
+        print("Se recibió la imagen {}".format(image_path))
     except IOError:
         print("No se pudo leer la imagen {}".format(image_path))
         exit(1)
 
+    # Get and print the cloud coverage index.
     index, new_image = CloudCoverage.compute(image)
 
     print("El índice de cobertura nubosa es: {}".format(index))
 
+    # Save image if the export flag was received.
     if export:
+        out_path = '.'.join(image_path.split('.')[:-1]) + "-seg.png"
         try:
-            IO.write(new_image)
-            print("Se guardó exitosamente la imagen {}.{}".format(new_image.name, new_image.extension))
+            IO.write(new_image, out_path)
+            print("Se guardó exitosamente la imagen {}".format(out_path))
         except:
-            print("Ocurrió un error al guardar la imagen {}.{}".format(new_image.name, new_image.extension))
+            print("Ocurrió un error al guardar la imagen {}".format(out_path))
 
 
 if __name__ == "__main__":
@@ -58,3 +63,4 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     main(args.image_path, bool(args.S))
+

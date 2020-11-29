@@ -1,8 +1,13 @@
-class Image:
-    def __init__(self, name, pixels):
-        name_divided = name.split('.')
+from dataclasses import dataclass
+import numpy
 
-        self.name = ".".join(name_divided[0:-1])
-        self.extension = name_divided[-1]
-        self.pixels = pixels
+@dataclass()
+class Image:
+    """Instance that contains the image's data.
+
+    Attributes:
+        pixels: A numpy 2x2 matrix with pixels [blue, green, red, alpha].
+    """
+
+    pixels: numpy.ndarray
 
