@@ -4,8 +4,7 @@ from proyecto2.cloud_coverage import CloudCoverage
 from proyecto2.io import IO
 
 class TestCloudCoverage:
-    TEST_MASK_IMAGE = "./test/images/test_3.jpg"
-    TEST_CLASSIFY_IMAGE = "./test/images/test_4.jpg"
+    TEST_IMAGE = "./test/images/test_4.jpg"
 
     def mask_for_test(self, image):
         rows, cols, _ = image.shape
@@ -22,7 +21,7 @@ class TestCloudCoverage:
         return x // 2
 
     def test_mask(self):
-        image = IO.read(self.TEST_MASK_IMAGE)
+        image = IO.read(self.TEST_IMAGE)
         image_mask = CloudCoverage.apply_mask(image.pixels)
 
         mask = self.mask_for_test(image_mask)
@@ -31,7 +30,7 @@ class TestCloudCoverage:
         assert np.all(image_mask[~mask][:,3] == 255)
 
     def test_classify(self):
-        image = IO.read(self.TEST_CLASSIFY_IMAGE)
+        image = IO.read(self.TEST_IMAGE)
         image_classified = CloudCoverage.classify(image.pixels)
 
         mid = self.mid_width(image)
@@ -40,14 +39,14 @@ class TestCloudCoverage:
         assert np.all(image_classified[:, :mid] == [0, 0, 0, 255])
 
     def test_ratio(self):
-        image = IO.read(self.TEST_CLASSIFY_IMAGE)
+        image = IO.read(self.TEST_IMAGE)
         classified_pixels = CloudCoverage.classify(image.pixels)
         ratio = CloudCoverage.ratio(classified_pixels)
 
         assert ratio == 0.5
 
     def test_compute(self):
-        image = IO.read(self.TEST_CLASSIFY_IMAGE)
+        image = IO.read(self.TEST_IMAGE)
         count, classified_image = CloudCoverage.compute(image)
 
         mid = self.mid_width(image)
