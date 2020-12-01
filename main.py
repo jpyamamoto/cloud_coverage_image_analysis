@@ -5,8 +5,8 @@ Cloud Coverage Analysis.
 Given an image whose path is received as the first argument when calling the
 program, return the Cloud Coverage Index.
 
-The Cloud Coverage Index is given by _CCI = N/C_ where _N_ stands for the
-amount of pixels classified as cloud, and _C_ is the number of pixels in
+The Cloud Coverage Index is given by CCI = N/C where N stands for the
+amount of pixels classified as cloud, and C is the number of pixels in
 the valid area of the given picture.
 
 An optional flag "s" or "S" may be given, which indicates that the resulting

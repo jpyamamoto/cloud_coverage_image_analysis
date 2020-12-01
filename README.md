@@ -10,20 +10,37 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the pac
 pip install -r requirements.txt
 ```
 
-## Usage
+## Tests
 
-```python
-import foobar
-
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
+```bash
+python -m pytest
 ```
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Usage
 
-Please make sure to update tests as appropriate.
+```bash
+./main.py <image_path> [s|S]
+
+# Examples
+./main.py ../images/image1.JPG
+./main.py ../images/image1.JPG S
+```
+
+## Generate Documentation
+
+After having the requirements installed, execute the following command:
+
+```bash
+cd docs/
+
+# To generate the documentation in HTML format
+make html
+
+# To generate the documentation in LaTeX format
+make html
+```
+
+Generated docs will be located in `docs/build/`.
 
 ## License
 [MIT](LICENSE)

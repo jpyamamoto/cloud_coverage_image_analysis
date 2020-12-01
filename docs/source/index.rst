@@ -10,11 +10,22 @@ Cloud Coverage Image Analysis: Documentation
    :maxdepth: 2
    :caption: Contents:
 
-main
-===================
 .. automodule:: main
+
+Cloud Coverage
+===================
+.. automodule:: proyecto2.cloud_coverage
    :members:
 
+I/O
+===================
+.. automodule:: proyecto2.io
+   :members:
+
+Image
+===================
+.. automodule:: proyecto2.image
+   :members:
 
 Indices and tables
 ==================

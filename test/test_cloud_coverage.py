@@ -4,7 +4,7 @@ from proyecto2.cloud_coverage import CloudCoverage
 from proyecto2.io import IO
 
 class TestCloudCoverage:
-    TEST_IMAGE = "./test/images/test_4.jpg"
+    TEST_IMAGE = "./test/images/test_2.jpg"
 
     def mask_for_test(self, image):
         rows, cols, _ = image.shape

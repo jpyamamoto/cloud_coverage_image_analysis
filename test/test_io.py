@@ -25,8 +25,8 @@ class TestIO:
         matrix = np.array(self.TEST1)
         image = Image(matrix)
 
-        IO.write(image, "./test/images_test/test_2.png")
+        IO.write(image, "./test/images_test/test.png")
 
-        new_image = IO.read("./test/images_test/test_2.png")
+        new_image = IO.read("./test/images_test/test.png")
         assert (new_image.pixels == matrix).all()
 
