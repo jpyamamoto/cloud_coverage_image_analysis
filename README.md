@@ -12,6 +12,8 @@ pip install -r requirements.txt
 
 ## Tests
 
+The project runs with Python 3. If the default version is Python 2, use the command `python3` instead.
+
 ```bash
 python -m pytest
 ```
